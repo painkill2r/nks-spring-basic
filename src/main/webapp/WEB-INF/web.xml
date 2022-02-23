@@ -53,13 +53,22 @@
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+
     <error-page>
         <error-code>400</error-code>
-        <location>/error400.jsp</location>
+        <location>/resources/common/error/400.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/resources/common/error/404.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/error500.jsp</location>
+        <location>/resources/common/error/500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>503</error-code>
+        <location>/resources/common/error/503.jsp</location>
     </error-page>
 
 </web-app>
