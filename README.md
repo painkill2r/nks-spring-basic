@@ -94,3 +94,7 @@
         1) 톰캣설치경로/conf/server.xml: Tomcat 서버 설정 파일
         2) 톰캣설치경로/conf/web.xml: Tomcat의 모든 web app의 공통 설정
         3) 웹앱이름/WEB-INF/web.xml: web app의 개별 설정
+
+#### Tomcat의 내부 구조
+
+![Tomcat의 내부 구조](./images/ch2/14.png)
