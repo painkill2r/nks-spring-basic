@@ -28,8 +28,8 @@ public class TwoDice {
         out.println("<head>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<img src=\"/img/dice" + idx1 + ".jpg\">");
-        out.println("<img src=\"/img/dice" + idx2 + ".jpg\">");
+        out.println("<img src=\"/resources/img/dice" + idx1 + ".jpg\">");
+        out.println("<img src=\"/resources/img/dice" + idx2 + ".jpg\">");
         out.println("</body>");
         out.println("</html>");
         out.close();
