@@ -1,15 +1,20 @@
 package kr.co.fastcampus.spring.basic.ch2.yoil;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Calendar;
 
 @Controller
 public class YoilTellerWebDataBinderMVC {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(YoilTellerWebDataBinderMVC.class);
 
     /**
      * 예외 처리 핸들러
@@ -18,7 +23,15 @@ public class YoilTellerWebDataBinderMVC {
      * @return
      */
     @ExceptionHandler(Exception.class)
-    public String catcher(Exception ex) {
+    public String catcher(Exception ex, BindingResult result) {
+        LOGGER.debug("result = {}", result);
+
+        FieldError fieldError = result.getFieldError();
+
+        LOGGER.debug("fieldError.getCode() = {}", fieldError.getCode());
+        LOGGER.debug("fieldError.getField() = {}", fieldError.getField());
+        LOGGER.debug("fieldError.getDefaultMessage() = {}", fieldError.getDefaultMessage());
+
         return "yoil/yoilError"; ///WEB-INF/views/yoil/yoilError.jsp
     }
 
@@ -26,11 +39,20 @@ public class YoilTellerWebDataBinderMVC {
      * http://localhost:8080/getYoilWebDataBinderMVC?year=2022&month=3&day=28
      *
      * @param date
+     * @param result
      * @param model
      * @return
      */
     @RequestMapping("/getYoilWebDataBinderMVC")
-    public String main(@ModelAttribute MyDate date, Model model) {
+    public String main(MyDate date, BindingResult result, Model model) {
+        LOGGER.debug("result = {}", result);
+
+        FieldError fieldError = result.getFieldError();
+
+        LOGGER.debug("fieldError.getCode() = {}", fieldError.getCode());
+        LOGGER.debug("fieldError.getField() = {}", fieldError.getField());
+        LOGGER.debug("fieldError.getDefaultMessage() = {}", fieldError.getDefaultMessage());
+
         //1. 유효성 검사
         if (!isValid(date)) {
             return "yoil/yoilError"; ///WEB-INF/views/yoil/yoilError.jsp
