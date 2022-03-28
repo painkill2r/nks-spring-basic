@@ -21,12 +21,12 @@ public class MethodCall3 {
     public static void main(String[] args) throws Exception {
         //1. 요청할 때 제공된 값 - raequest.getParameterMap();
         Map map = new HashMap();
-        map.put("year", "2021");
-        //map.put("arg0", "2021");
-        map.put("month", "10");
-        //map.put("arg1", "10");
-        map.put("day", "1");
-        //map.put("arg2", "1");
+        map.put("arg0", "2021");
+        map.put("arg1", "10");
+        map.put("arg2", "1");
+        //map.put("year", "2021");
+        //map.put("month", "10");
+        //map.put("day", "1");
 
         Model model = null;
         Class clazz = Class.forName("kr.co.fastcampus.spring.basic.ch2.yoil.YoilTellerMVC");

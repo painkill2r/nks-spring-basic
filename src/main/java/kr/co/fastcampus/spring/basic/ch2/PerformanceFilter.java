@@ -36,7 +36,7 @@ public class PerformanceFilter implements Filter {
         chain.doFilter(request, response);
 
         // 3. 후처리 작업
-        LOGGER.info("[{}]소요시간 = {}", ((HttpServletRequest) request).getRequestURI(), (System.currentTimeMillis() - startTime));
+        LOGGER.info("[{}] 소요시간 = {}", ((HttpServletRequest) request).getRequestURI(), (System.currentTimeMillis() - startTime));
     }
 
     @Override
