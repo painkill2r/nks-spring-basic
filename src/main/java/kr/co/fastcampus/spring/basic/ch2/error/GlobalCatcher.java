@@ -1,8 +1,11 @@
 package kr.co.fastcampus.spring.basic.ch2.error;
 
-import org.springframework.ui.Model;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.FileNotFoundException;
 
@@ -10,15 +13,38 @@ import java.io.FileNotFoundException;
 @ControllerAdvice
 public class GlobalCatcher {
 
-    @ExceptionHandler({NullPointerException.class, FileNotFoundException.class})
-    public String catcher2(Exception ex, Model model) {
-        model.addAttribute("ex", ex);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalCatcher.class);
+
+    /**
+     * @param ex
+     * @return
+     */
+    //@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 200 -> 500
+    @ExceptionHandler(Exception.class)
+    public String catcher(Exception ex) {
+        LOGGER.info("GlobalCatcher#catcher()");
         return "error/error";
     }
 
-    @ExceptionHandler(Exception.class)
-    public String catcher(Exception ex, Model model) {
-        model.addAttribute("ex", ex);
+    /**
+     * @param ex
+     * @return
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 200 -> 500
+    @ExceptionHandler({NullPointerException.class, ClassCastException.class})
+    public String catcher2(Exception ex) {
+        LOGGER.info("GlobalCatcher#catcher2()");
+        return "error/error";
+    }
+
+    /**
+     * @param ex
+     * @return
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST) // 200 -> 400
+    @ExceptionHandler(FileNotFoundException.class)
+    public String catcher3(Exception ex) {
+        LOGGER.info("GlobalCatcher#catcher3()");
         return "error/error";
     }
 }
